@@ -1,779 +1,354 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="web_standard" name="shell-type"/>
-<title>VIVO Real Estate Group | Premier South Florida Commercial Advisory</title>
-<!-- Fonts: Noto Serif / Cormorant Garamond style editorial serif + Space Grotesk / Inter geometric modern -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>VIVO Real Estate Group | South Florida Commercial Advisory</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "onyx": "#111315",
-            "onyx-muted": "#3A3D42",
-            "stone-light": "#F8F7F4",
-            "stone-tint": "#F1EFEA",
-            "hairline": "#E5E3DC",
-            "hairline-dark": "#D1CEC7",
-            "gold": "#BFA15F",
-            "gold-deep": "#9E7F3D",
-            "gold-soft": "#F6F2E9",
-            "paper": "#FFFFFF"
-          },
-          fontFamily: {
-            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-            sans: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'sans-serif']
-          }
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: "#14181C",
+          "ink-soft": "#4A4F55",
+          paper: "#FBFAF6",
+          line: "#E2DFD6",
+          brass: "#A9813F",
+          "brass-deep": "#7E5F2C",
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          sans: ['Inter', 'sans-serif'],
         }
       }
-    };
-  </script>
+    }
+  };
+</script>
 <style>
-    @layer base {
-      html, body {
-        margin: 0;
-        padding: 0;
-        background-color: #FFFFFF;
-        color: #111315;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-      }
-    }
-    .serif-display {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-    }
-    .grotesk {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    ::selection {
-      background-color: #111315;
-      color: #FFFFFF;
-    }
-  </style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:88px; scroll-behavior:smooth;}
+  html,body{margin:0;background:#FBFAF6;color:#14181C;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Fraunces','Georgia',serif;}
+
+  /* Hero entrance — one orchestrated sequence, not per-section */
+  .reveal{opacity:0; transform:translateY(18px); animation:rise .9s cubic-bezier(.19,1,.22,1) forwards;}
+  .reveal.d1{animation-delay:.15s} .reveal.d2{animation-delay:.35s}
+  .reveal.d3{animation-delay:.55s} .reveal.d4{animation-delay:.75s}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+
+  header{transition:background-color .4s ease, border-color .4s ease, backdrop-filter .4s ease;}
+  header.solid{background:rgba(251,250,246,.96); backdrop-filter:blur(10px); border-bottom-color:#E2DFD6;}
+  header.at-top{background:transparent; border-bottom-color:transparent;}
+  header.at-top .nav-link, header.at-top .brand-word{color:#FBFAF6;}
+  header.at-top .brand-sub{color:rgba(251,250,246,.7);}
+  header.at-top .icon-ink{color:#FBFAF6;}
+  header:not(.at-top) .nav-link, header:not(.at-top) .brand-word{color:#14181C;}
+  header:not(.at-top) .brand-sub{color:#4A4F55;}
+  header:not(.at-top) .icon-ink{color:#14181C;}
+
+  #scrollbar{position:fixed; top:0; left:0; height:2px; background:#A9813F; width:0%; z-index:60; transition:width .1s linear;}
+
+  #mobile-menu{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.19,1,.22,1);}
+  #mobile-menu.open{max-height:420px;}
+
+  .card-img{transition:transform .8s cubic-bezier(.19,1,.22,1);}
+  .card:hover .card-img{transform:scale(1.045);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{animation:none; opacity:1; transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
-<body class="bg-paper text-onyx selection:bg-onyx selection:text-white antialiased">
-<!-- ==================== EDITORIAL HEADER ==================== -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-hairline transition-all duration-300">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 h-20 flex items-center justify-between">
-<!-- Brand Logo Wordmark -->
-<a class="flex items-center gap-3.5 group" href="#">
-<svg class="h-8 w-auto text-onyx group-hover:text-gold transition-colors duration-300" fill="none" viewbox="0 0 48 44" xmlns="http://www.w3.org/2000/svg">
-<polygon fill="currentColor" points="0,0 12,0 24,36 36,0 48,0 28,44 20,44"></polygon>
-<polygon fill="#BFA15F" points="16,10 24,30 32,10 28,10 24,20 20,10"></polygon>
-</svg>
-<div class="flex flex-col">
-<span class="grotesk text-lg tracking-[0.22em] font-semibold text-onyx uppercase leading-none">VIVO</span>
-<span class="grotesk text-[8px] tracking-[0.32em] text-onyx-muted uppercase mt-1">Real Estate Group</span>
-</div>
-</a>
-<!-- Desktop Navigation -->
-<nav class="hidden lg:flex items-center gap-9 text-[11px] tracking-[0.2em] uppercase text-onyx font-medium grotesk">
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#featured-listings">Featured Properties</a>
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#capabilities">Advisory</a>
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#capabilities">Capital Markets</a>
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#principal">The Principal</a>
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#closings">Track Record</a>
-<a class="hover:text-gold transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all" href="#contact">Contact</a>
-</nav>
-<!-- Direct Phone & Advisory CTA -->
-<div class="flex items-center gap-6">
-<a class="hidden sm:flex items-center gap-2 text-xs grotesk tracking-widest text-onyx hover:text-gold transition-colors font-medium" href="tel:3058178899">
-<span class="text-gold text-sm material-symbols-outlined">call</span>
-<span>(305) 817-8899</span>
-</a>
-<a class="inline-flex items-center justify-center border border-onyx text-onyx hover:bg-onyx hover:text-white px-5 py-2.5 text-[11px] tracking-[0.2em] uppercase font-semibold grotesk transition-all duration-300" href="#contact">
-          Inquire Privately
-        </a>
-<button aria-label="Toggle Navigation" class="lg:hidden p-2 text-onyx" id="mobile-toggle">
-<span class="material-symbols-outlined text-2xl">menu</span>
-</button>
-</div>
-</div>
-<!-- Mobile Menu dropdown -->
-<div class="hidden lg:hidden bg-white border-b border-hairline px-6 py-6 flex flex-col gap-4 text-xs uppercase tracking-widest font-medium grotesk" id="mobile-menu">
-<a class="hover:text-gold py-2" href="#featured-listings">Featured Properties</a>
-<a class="hover:text-gold py-2" href="#capabilities">Advisory</a>
-<a class="hover:text-gold py-2" href="#principal">The Principal</a>
-<a class="hover:text-gold py-2" href="#closings">Track Record</a>
-<a class="hover:text-gold py-2" href="#contact">Contact</a>
-<a class="text-gold pt-2" href="tel:3058178899">(305) 817-8899</a>
-</div>
+<body class="bg-paper text-ink selection:bg-ink selection:text-paper">
+
+<div id="scrollbar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="at-top fixed top-0 left-0 right-0 z-50 border-b border-transparent" style="padding-top:env(safe-area-inset-top,0px)">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-[76px] flex items-center justify-between">
+    <a href="#top" class="flex items-baseline gap-2.5">
+      <span class="serif brand-word text-[26px] tracking-[0.02em] font-medium leading-none">VIVO</span>
+      <span class="brand-sub text-[10px] tracking-[0.28em] uppercase leading-none hidden sm:inline">Real Estate Group</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-[13px] font-medium">
+      <a class="nav-link hover:text-brass transition-colors" href="#listings">Properties</a>
+      <a class="nav-link hover:text-brass transition-colors" href="#advisory">Advisory</a>
+      <a class="nav-link hover:text-brass transition-colors" href="#principal">Leadership</a>
+      <a class="nav-link hover:text-brass transition-colors" href="#closings">Closings</a>
+      <a class="nav-link hover:text-brass transition-colors" href="#contact">Contact</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <a href="tel:3058178899" class="hidden sm:flex nav-link items-center gap-2 text-[13px] font-medium hover:text-brass transition-colors">
+        <span>(305) 817-8899</span>
+      </a>
+      <a href="#contact" class="hidden sm:inline-flex items-center border border-current nav-link hover:bg-brass hover:border-brass hover:text-paper px-5 py-2.5 text-[12px] font-medium transition-colors">
+        Inquire Privately
+      </a>
+      <button id="menu-btn" aria-label="Menu" class="lg:hidden icon-ink p-1">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden bg-paper border-b border-line">
+    <div class="px-6 py-6 flex flex-col gap-5 text-[15px]">
+      <a href="#listings" class="menu-close">Properties</a>
+      <a href="#advisory" class="menu-close">Advisory</a>
+      <a href="#principal" class="menu-close">Leadership</a>
+      <a href="#closings" class="menu-close">Closings</a>
+      <a href="#contact" class="menu-close">Contact</a>
+      <a href="tel:3058178899" class="text-brass font-medium">(305) 817-8899</a>
+    </div>
+  </div>
 </header>
-<!-- ==================== HERO SECTION: CINEMATIC & EDITORIAL ==================== -->
-<section class="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-12 lg:pt-32 lg:pb-16 bg-stone-light border-b border-hairline overflow-hidden">
-<!-- Ambient architectural backdrop -->
-<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
-<div class="absolute -top-32 right-10 w-[700px] h-[700px] rounded-full bg-gold/15 blur-[120px]"></div>
-<div class="absolute bottom-0 left-10 w-[500px] h-[500px] rounded-full bg-stone-tint blur-[90px]"></div>
-</div>
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 w-full relative z-10 my-auto">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-<!-- Left: Editorial Typography -->
-<div class="lg:col-span-7 flex flex-col items-start space-y-6">
-<div class="inline-flex items-center gap-3 border-b border-gold/60 pb-2">
-<span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-<span class="grotesk text-[10px] sm:text-[11px] uppercase tracking-[0.28em] font-medium text-onyx-muted">
-              Miami &amp; South Florida Commercial Advisory
-            </span>
-</div>
-<h1 class="serif-display text-4xl sm:text-6xl lg:text-[4.75rem] font-light leading-[1.08] text-onyx tracking-[-0.01em]">
-            Unlocking <br/>
-<span class="italic font-normal">Extraordinary Value</span> in <br/>
-            Commercial Real Estate.
-          </h1>
-<p class="font-body text-base sm:text-lg text-onyx-muted max-w-xl font-light leading-relaxed pt-2">
-            Institutional investment sales, bespoke capital placement, and authoritative industrial &amp; office advisory. Helmed by SIOR &amp; CCIM designated leadership across Miami-Dade, Broward, and Palm Beach.
-          </p>
-<div class="flex flex-wrap items-center gap-5 pt-4">
-<a class="bg-onyx hover:bg-gold text-white px-8 py-4 text-[11px] tracking-[0.22em] uppercase font-semibold grotesk transition-colors duration-300 flex items-center gap-3" href="#featured-listings">
-<span>View Portfolio</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-<a class="border border-hairline-dark hover:border-onyx text-onyx bg-white px-7 py-4 text-[11px] tracking-[0.22em] uppercase font-medium grotesk transition-all duration-300" href="#contact">
-              Request Asset Appraisal
-            </a>
-</div>
-</div>
-<!-- Right: Full Cinematic Architectural Showcase with Video / Drone Media -->
-<div class="lg:col-span-5 relative">
-<div class="relative w-full aspect-[4/5] max-h-[580px] bg-onyx overflow-hidden shadow-2xl border border-hairline">
-<!-- Smooth ambient HTML5 architectural video -->
-<video autoplay="" class="w-full h-full object-cover opacity-90 scale-105 hover:scale-100 transition-transform duration-1000" loop="" muted="" playsinline="">
-<source src="https://assets.mixkit.co/videos/preview/mixkit-modern-building-with-glass-facade-41394-large.mp4" type="video/mp4"/>
-</video>
-<!-- Video Fallback / Ambient Overlay Texture -->
-<div class="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent pointer-events-none"></div>
-<!-- Top Corner Tag -->
-<div class="absolute top-5 left-5 bg-white/95 backdrop-blur-sm px-4 py-1.5 border border-hairline">
-<span class="grotesk text-[9px] uppercase tracking-[0.24em] font-semibold text-onyx">Institutional Logistics &amp; Prime Assets</span>
-</div>
-<!-- Bottom Floating Asset Card -->
-<div class="absolute bottom-5 left-5 right-5 p-5 bg-white/95 backdrop-blur-md border border-hairline shadow-lg">
-<div class="flex items-center justify-between">
-<div>
-<span class="grotesk text-[9px] uppercase tracking-[0.25em] text-gold font-semibold block">Market Benchmark</span>
-<h4 class="grotesk text-sm font-semibold tracking-wider text-onyx uppercase mt-0.5">Tri-County Flagship Assets</h4>
-</div>
-<span class="text-xs grotesk font-mono text-onyx-muted tracking-widest">2026 MANDATES</span>
-</div>
-<div class="mt-3 pt-3 border-t border-hairline flex items-center justify-between text-[11px] text-onyx-muted grotesk">
-<span>Hialeah • Fort Lauderdale • Coral Gables</span>
-<span class="text-onyx font-semibold">Dual SIOR/CCIM</span>
-</div>
-</div>
-</div>
-<!-- Decorative hairline framing element -->
-<div class="hidden lg:block absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-gold/40 pointer-events-none -z-10"></div>
-</div>
-</div>
-</div>
-<!-- Minimalist Bespoke Metrics Strip inspired by The Nicolas Group "By the Numbers" -->
-<div class="w-full mt-12 pt-8 border-t border-hairline">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="flex flex-col border-l border-hairline pl-5">
-<span class="serif-display text-3xl sm:text-4xl text-onyx font-normal tracking-tight">$1.2B+</span>
-<span class="grotesk text-[10px] tracking-[0.24em] text-onyx-muted uppercase mt-1">Total Transaction Volume</span>
-</div>
-<div class="flex flex-col border-l border-hairline pl-5">
-<span class="serif-display text-3xl sm:text-4xl text-onyx font-normal tracking-tight">#1</span>
-<span class="grotesk text-[10px] tracking-[0.24em] text-onyx-muted uppercase mt-1">Tri-County Industrial Advisory</span>
-</div>
-<div class="flex flex-col border-l border-hairline pl-5">
-<span class="serif-display text-3xl sm:text-4xl text-onyx font-normal tracking-tight">SIOR • CCIM</span>
-<span class="grotesk text-[10px] tracking-[0.24em] text-onyx-muted uppercase mt-1">Dual Credentialed Leadership</span>
-</div>
-<div class="flex flex-col border-l border-hairline pl-5">
-<span class="serif-display text-3xl sm:text-4xl text-onyx font-normal tracking-tight">100%</span>
-<span class="grotesk text-[10px] tracking-[0.24em] text-onyx-muted uppercase mt-1">Principal Direct Execution</span>
-</div>
-</div>
-</div>
-</div>
+
+<!-- ============ HERO — full-bleed video, name up front ============ -->
+<section id="top" class="relative w-full h-[100svh] min-h-[560px] overflow-hidden bg-ink">
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4"/>
+  </video>
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/50"></div>
+
+  <div class="relative z-10 h-full flex flex-col justify-end px-6 sm:px-10 lg:px-14 pb-14 sm:pb-16 max-w-[1440px] mx-auto">
+    <span class="reveal d1 text-[11px] tracking-[0.25em] uppercase text-paper/70 mb-4">Miami · Broward · Palm Beach</span>
+    <h1 class="reveal d2 serif text-[19vw] sm:text-[10vw] lg:text-[7.5rem] leading-[0.86] tracking-tight text-paper font-medium">VIVO</h1>
+    <p class="reveal d3 text-paper/85 text-base sm:text-lg max-w-lg font-light leading-relaxed mt-5">
+      Institutional investment sales and industrial &amp; office advisory for South Florida's most demanding owners — led personally by a dual SIOR &amp; CCIM principal.
+    </p>
+    <div class="reveal d4 flex flex-wrap items-center gap-4 mt-8">
+      <a href="#listings" class="bg-paper text-ink hover:bg-brass hover:text-paper px-7 py-3.5 text-[12px] font-medium tracking-wide transition-colors">View Portfolio</a>
+      <a href="#contact" class="border border-paper/50 text-paper hover:border-paper px-7 py-3.5 text-[12px] font-medium tracking-wide transition-colors">Request Appraisal</a>
+    </div>
+  </div>
 </section>
-<!-- ==================== PRINCIPAL & FOUNDER SPOTLIGHT ==================== -->
-<section class="w-full py-24 sm:py-32 bg-white border-b border-hairline" id="principal">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<!-- Section Intro Header -->
-<div class="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 border-b border-hairline gap-6">
-<div>
-<span class="grotesk text-[10px] tracking-[0.3em] uppercase text-gold font-semibold block mb-2">Leadership &amp; Fiduciary Standard</span>
-<h2 class="serif-display text-3xl sm:text-5xl text-onyx font-normal">Principal-Led Advisory</h2>
+
+<!-- Stats strip -->
+<div class="w-full bg-ink text-paper py-8 sm:py-10 border-b border-white/10">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+    <div><span class="serif text-3xl sm:text-4xl font-medium">$1.2B+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Transaction volume</span></div>
+    <div><span class="serif text-3xl sm:text-4xl font-medium">250+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Deals closed</span></div>
+    <div><span class="serif text-3xl sm:text-4xl font-medium">SIOR/CCIM</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Dual designation</span></div>
+    <div><span class="serif text-3xl sm:text-4xl font-medium">20+ yrs</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Tri-county focus</span></div>
+  </div>
 </div>
-<p class="font-body text-sm text-onyx-muted max-w-md font-light leading-relaxed">
-          At VIVO, high-stakes commercial real estate negotiations are never delegated to junior analysts. Every transaction is directly directed by seasoned firm leadership.
+
+<!-- ============ PRINCIPAL ============ -->
+<section id="principal" class="py-20 sm:py-28 border-b border-line">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="lg:col-span-5">
+        <div class="aspect-[4/5] bg-line overflow-hidden">
+          <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Carlos Mendoza, SIOR, CCIM, Managing Principal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwupkhoLCvg1YR05IiBensyPNDOZ4m6G_jt4NtaFA4UsuAdzwZGWS9Xw1DSsWXS2Tk-sMY69iMKOUXKOZplDLDBXo-VTIbPSFtBhqxwoQz4_iaomrOsk55IpSa3G9UsNWvnjTNajTjEg1edv71Ap03yvmUmjL8U7doGF3301JY4k41a6KyTPQxY9INF1tm3avh4LhQZLSJgWIdOGpRD3bSLqpuwazB3ET0eK31VF-kVU-WPc8084CHSGltkhQopkkyATw"/>
+        </div>
+      </div>
+      <div class="lg:col-span-7 space-y-6">
+        <p class="serif italic text-2xl sm:text-3xl leading-snug">"Institutional owners need direct, battle-tested principal involvement — that's the difference between an ordinary sale and a historic one."</p>
+        <div class="w-14 h-px bg-brass"></div>
+        <p class="text-ink-soft leading-relaxed">
+          Carlos Mendoza founded VIVO Real Estate Group and personally oversees every major disposition, corporate relocation, and industrial acquisition the firm handles. He holds dual designation as an <strong class="text-ink font-medium">SIOR</strong> and <strong class="text-ink font-medium">CCIM</strong> — a rare combination in South Florida.
         </p>
-</div>
-<!-- Editorial Magazine Profile Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-<!-- Left: Portrait in Architectural Framing -->
-<div class="lg:col-span-5 relative">
-<div class="p-3 bg-stone-light border border-hairline shadow-xl">
-<div class="relative overflow-hidden aspect-[4/5] bg-stone-tint">
-<img alt="Carlos Mendoza, SIOR, CCIM - Managing Principal &amp; Founder" class="w-full h-full object-cover object-top filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwupkhoLCvg1YR05IiBensyPNDOZ4m6G_jt4NtaFA4UsuAdzwZGWS9Xw1DSsWXS2Tk-sMY69iMKOUXKOZplDLDBXo-VTIbPSFtBhqxwoQz4_iaomrOsk55IpSa3G9UsNWvnjTNajTjEg1edv71Ap03yvmUmjL8U7doGF3301JY4k41a6KyTPQxY9INF1tm3avh4LhQZLSJgWIdOGpRD3bSLqpuwazB3ET0eK31VF-kVU-WPc8084CHSGltkhQopkkyATw"/>
-<!-- Subtle badge on portrait -->
-<div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 border border-hairline flex items-center justify-between">
-<div>
-<span class="grotesk text-xs tracking-wider uppercase font-semibold text-onyx block">Carlos Mendoza</span>
-<span class="grotesk text-[10px] tracking-widest uppercase text-gold">SIOR • CCIM</span>
-</div>
-<span class="grotesk text-[9px] uppercase tracking-widest text-onyx-muted font-medium">Founder &amp; Managing Principal</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Right: Editorial Monograph / Bio -->
-<div class="lg:col-span-7 flex flex-col justify-between space-y-8">
-<div class="space-y-6">
-<div class="serif-display text-2xl sm:text-3xl text-onyx italic font-light leading-snug">
-              “Institutional owners require direct, battle-tested principal involvement. In South Florida’s competitive landscape, precision financial underwriting and deep local relationships determine the spread between ordinary returns and historic liquidity.”
-            </div>
-<div class="w-16 h-[1px] bg-gold"></div>
-<p class="font-body text-base text-onyx-muted font-light leading-relaxed">
-              As founder and managing principal of VIVO Real Estate Group, <strong class="text-onyx font-medium">Carlos Mendoza</strong> provides direct fiduciary oversight across all major asset dispositions, corporate relocations, industrial logistics acquisitions, and bespoke capital structuring. Holding prestigious dual designations as both an <strong class="text-onyx font-medium">SIOR</strong> (Society of Industrial and Office Realtors) and <strong class="text-onyx font-medium">CCIM</strong> (Certified Commercial Investment Member), Carlos delivers institutional-grade financial analysis combined with deep, ground-level regional execution.
-            </p>
-<p class="font-body text-base text-onyx-muted font-light leading-relaxed">
-              With over two decades dedicated exclusively to the South Florida commercial corridor, his advisory track record spans premier distribution logistics centers, complex 1031 exchanges, and high-visibility prime land acquisitions across Miami-Dade, Broward, and Palm Beach counties.
-            </p>
-</div>
-<!-- Credentials Spec Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-hairline">
-<div>
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Certifications</span>
-<span class="grotesk text-sm font-semibold uppercase text-onyx mt-1 block">SIOR &amp; CCIM Dual</span>
-</div>
-<div>
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Transaction Span</span>
-<span class="grotesk text-sm font-semibold uppercase text-onyx mt-1 block">250+ Closed Deals</span>
-</div>
-<div>
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Tri-County Hubs</span>
-<span class="grotesk text-sm font-semibold uppercase text-onyx mt-1 block">Hialeah • Gables • FTL</span>
-</div>
-</div>
-<!-- Signature Signoff CTA -->
-<div class="pt-4 flex items-center gap-6">
-<a class="bg-onyx hover:bg-gold text-white px-7 py-3.5 text-[11px] tracking-[0.22em] uppercase font-semibold grotesk transition-colors" href="#contact">
-              Schedule Principal Consultation
-            </a>
-<a class="text-xs grotesk tracking-widest text-onyx hover:text-gold uppercase font-semibold transition-colors flex items-center gap-1.5" href="tel:3058178899">
-<span>(305) 817-8899</span>
-<span class="material-symbols-outlined text-sm">arrow_outward</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ==================== FEATURED PRIME LISTINGS (CLEAN ARCHITECTURAL GRID) ==================== -->
-<section class="w-full py-24 sm:py-32 bg-stone-light border-b border-hairline" id="featured-listings">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<!-- Section Header with Numbered Tab Detail -->
-<div class="flex flex-col lg:flex-row lg:items-end justify-between pb-10 mb-12 border-b border-hairline gap-6">
-<div>
-<span class="grotesk text-[10px] tracking-[0.3em] uppercase text-gold font-semibold block mb-2">Curated Commercial Portfolio</span>
-<h2 class="serif-display text-3xl sm:text-5xl text-onyx font-normal">Featured Prime Assets</h2>
-</div>
-<div class="flex items-center gap-8 grotesk text-[11px] tracking-[0.2em] text-onyx-muted uppercase">
-<span class="text-onyx font-semibold border-b border-onyx pb-1">All Assets</span>
-<span class="hover:text-onyx cursor-pointer transition-colors">Industrial</span>
-<span class="hover:text-onyx cursor-pointer transition-colors">Commercial</span>
-<span class="hover:text-onyx cursor-pointer transition-colors">Office</span>
-</div>
-</div>
-<!-- 4-Column Architectural Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<!-- Listing 01: 5539 SW 8th St, Miami -->
-<article class="bg-white border border-hairline group flex flex-col justify-between hover:border-onyx transition-all duration-300">
-<div>
-<!-- Image Frame -->
-<div class="relative aspect-[16/11] overflow-hidden bg-stone-tint">
-<img alt="5539 SW 8th St Miami Commercial Property" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1VITxN0kCI1DGitOE1XcfknzLyp4HXwNHf9h7pOs_jzgudC-iOucHZoJeMMLz5p6BIs1Oa_opcoR_ImaDvu4TYQQrsFIKKKbK-JsX7UUJLesXa6oAvDFfdBTCFOTfIe0jla0hn5IVt5VCRHjUWorXFernjTLPJDjo4HuCOUtQ53K-A9ACGRupmHwzjZjvV3GlNLo9PalN7b1Xghf_9ZbtQRz2PnlZbAbpwDZI10DXYTbDEyYkB6EGDn2Wze"/>
-<span class="absolute top-3 left-3 bg-white/95 px-2.5 py-1 text-[9px] tracking-widest uppercase font-semibold grotesk text-onyx">01 / Retail &amp; Commercial</span>
-</div>
-<!-- Details -->
-<div class="p-6 space-y-3">
-<span class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted">Miami, FL • 8th Street Corridor</span>
-<h3 class="serif-display text-2xl text-onyx font-normal group-hover:text-gold transition-colors">5539 SW 8th St</h3>
-<p class="font-body text-xs text-onyx-muted leading-relaxed font-light">
-                High-visibility commercial asset featuring adaptable floor plates, extensive highway exposure, and private parking.
-              </p>
-</div>
-</div>
-<div class="px-6 pb-6 pt-3">
-<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-hairline grotesk text-[11px] mb-4">
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Scale</span>
-<span class="font-semibold text-onyx">9,230 SF</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Lot</span>
-<span class="font-semibold text-onyx">0.18 AC</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Parking</span>
-<span class="font-semibold text-gold">20+ Bays</span>
-</div>
-</div>
-<a class="w-full text-center py-2.5 border border-hairline hover:border-onyx text-onyx hover:bg-onyx hover:text-white grotesk text-[10px] tracking-[0.2em] uppercase font-semibold block transition-colors" href="#contact">
-              Request Dossier
-            </a>
-</div>
-</article>
-<!-- Listing 02: 888 SE 3rd Ave, Fort Lauderdale -->
-<article class="bg-white border border-hairline group flex flex-col justify-between hover:border-onyx transition-all duration-300">
-<div>
-<div class="relative aspect-[16/11] overflow-hidden bg-stone-tint">
-<img alt="888 SE 3rd Ave Fort Lauderdale Luxury Office" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1UL1LdXZM1fVwDFaf23JL-k8xvp6NIl1LnkW6DtZRfQ94BF9yeYBl_sOFev6NMagssewRWfI9QUUo_5O99Qh6cAvbrqRGAMBQ62HWdw8TM-4FeA497Aah6FtD4nYuQ7-yPIomD8qfcYHkGXZmLBb8XTnJAwnzogc0WmfuNsKjhDtBSFNgcd39j_K-pwP3J58HVwv940ojpx3vbQk4u1gPuAO6OPubQZxGdjty9RGI6WHfkYlTRk1Ngv5MI"/>
-<span class="absolute top-3 left-3 bg-white/95 px-2.5 py-1 text-[9px] tracking-widest uppercase font-semibold grotesk text-onyx">02 / Class-A Office</span>
-</div>
-<div class="p-6 space-y-3">
-<span class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted">Ft Lauderdale, FL • Downtown Core</span>
-<h3 class="serif-display text-2xl text-onyx font-normal group-hover:text-gold transition-colors">888 SE 3rd Ave, #502</h3>
-<p class="font-body text-xs text-onyx-muted leading-relaxed font-light">
-                Turnkey executive office suite with floor-to-ceiling glass, boardrooms, and executive hospitality layout.
-              </p>
-</div>
-</div>
-<div class="px-6 pb-6 pt-3">
-<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-hairline grotesk text-[11px] mb-4">
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Scale</span>
-<span class="font-semibold text-onyx">3,220 SF</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Ceiling</span>
-<span class="font-semibold text-onyx">10' Height</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Config</span>
-<span class="font-semibold text-gold">10 Suites</span>
-</div>
-</div>
-<a class="w-full text-center py-2.5 border border-hairline hover:border-onyx text-onyx hover:bg-onyx hover:text-white grotesk text-[10px] tracking-[0.2em] uppercase font-semibold block transition-colors" href="#contact">
-              Request Dossier
-            </a>
-</div>
-</article>
-<!-- Listing 03: 14951 S Dixie Hwy, Palmetto Bay -->
-<article class="bg-white border border-hairline group flex flex-col justify-between hover:border-onyx transition-all duration-300">
-<div>
-<div class="relative aspect-[16/11] overflow-hidden bg-stone-tint">
-<img alt="14951 S Dixie Hwy Commercial Showroom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1VkDLno8N46M2Q6nRW-ZcrD4du6hODowZvG0VfPD9JfXe6HrB8tkqasrzjL1sG4fgw9Adt2aJQg1DpUZ9zf7z2dxdjJ_TXV1sQlLUrwWCScstBWsPCgbxbSxyb-jqbM2nqLbj1NhB098gqZBLP3hUbtuRyBStyfXPmU2uZyeNxJ0bFhKopdRNnvwXIfyXm7tZzTw5GCumPFLnzTi0Lwp8O3LrD_CnPebGFVrGjbNELwkCTA03_VQ-2F5bo"/>
-<span class="absolute top-3 left-3 bg-white/95 px-2.5 py-1 text-[9px] tracking-widest uppercase font-semibold grotesk text-onyx">03 / Showroom &amp; Flex</span>
-</div>
-<div class="p-6 space-y-3">
-<span class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted">Palmetto Bay, FL • US-1 Frontage</span>
-<h3 class="serif-display text-2xl text-onyx font-normal group-hover:text-gold transition-colors">14951 S Dixie Hwy</h3>
-<p class="font-body text-xs text-onyx-muted leading-relaxed font-light">
-                Premier architectural showroom facility situated on major transit arterial with dual loading bays and customer parking.
-              </p>
-</div>
-</div>
-<div class="px-6 pb-6 pt-3">
-<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-hairline grotesk text-[11px] mb-4">
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Scale</span>
-<span class="font-semibold text-onyx">10,954 SF</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Lot</span>
-<span class="font-semibold text-onyx">0.57 AC</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Parking</span>
-<span class="font-semibold text-gold">34+ Bays</span>
-</div>
-</div>
-<a class="w-full text-center py-2.5 border border-hairline hover:border-onyx text-onyx hover:bg-onyx hover:text-white grotesk text-[10px] tracking-[0.2em] uppercase font-semibold block transition-colors" href="#contact">
-              Request Dossier
-            </a>
-</div>
-</article>
-<!-- Listing 04: 15002 NW 107th Ave, Hialeah Gardens -->
-<article class="bg-white border border-hairline group flex flex-col justify-between hover:border-onyx transition-all duration-300">
-<div>
-<div class="relative aspect-[16/11] overflow-hidden bg-stone-tint">
-<img alt="15002 NW 107th Ave Flagship Industrial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/>
-<span class="absolute top-3 left-3 bg-onyx text-white px-2.5 py-1 text-[9px] tracking-widest uppercase font-semibold grotesk">04 / Flagship Industrial</span>
-</div>
-<div class="p-6 space-y-3">
-<span class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted">Hialeah Gardens, FL • Industrial Hub</span>
-<h3 class="serif-display text-2xl text-onyx font-normal group-hover:text-gold transition-colors">15002 NW 107th Ave</h3>
-<p class="font-body text-xs text-onyx-muted leading-relaxed font-light">
-                Institutional distribution logistics center featuring heavy 3-phase power, 32' clear ceiling heights, and 35 dock positions.
-              </p>
-</div>
-</div>
-<div class="px-6 pb-6 pt-3">
-<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-hairline grotesk text-[11px] mb-4">
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Scale</span>
-<span class="font-semibold text-onyx">64,000 SF</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Clear</span>
-<span class="font-semibold text-onyx">32' Height</span>
-</div>
-<div>
-<span class="text-[9px] text-onyx-muted uppercase tracking-wider block">Docks</span>
-<span class="font-semibold text-gold">35 Docks</span>
-</div>
-</div>
-<a class="w-full text-center py-2.5 bg-onyx text-white hover:bg-gold grotesk text-[10px] tracking-[0.2em] uppercase font-semibold block transition-colors" href="#contact">
-              Acquisition Overview
-            </a>
-</div>
-</article>
-</div>
-</div>
-</section>
-<!-- ==================== EDITORIAL CAPABILITIES & ADVISORY ==================== -->
-<section class="w-full py-24 sm:py-32 bg-white border-b border-hairline" id="capabilities">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-<!-- Left: Headline & Thesis -->
-<div class="lg:col-span-4 flex flex-col justify-between">
-<div>
-<span class="grotesk text-[10px] tracking-[0.3em] uppercase text-gold font-semibold block mb-2">Integrated Advisory</span>
-<h2 class="serif-display text-3xl sm:text-5xl text-onyx font-normal leading-tight">
-              A Fiduciary Model Tailored for South Florida CRE.
-            </h2>
-<p class="font-body text-sm text-onyx-muted font-light leading-relaxed mt-6">
-              Unlike fragmented brokerages, VIVO synchronizes capital markets intelligence, tenant representation, and design-build delivery into a singular institutional standard.
-            </p>
-</div>
-<div class="pt-8 border-t border-hairline hidden lg:block">
-<span class="grotesk text-[10px] uppercase tracking-widest text-onyx-muted block">Direct Partner Contact</span>
-<a class="serif-display text-2xl text-onyx hover:text-gold transition-colors block mt-1" href="tel:3058178899">(305) 817-8899</a>
-</div>
-</div>
-<!-- Right: 3 Bespoke Numbered Pillars with Razor-Thin Lines -->
-<div class="lg:col-span-8 divide-y divide-hairline">
-<!-- Vertical 01 -->
-<div class="py-8 first:pt-0 group">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-<span class="md:col-span-2 grotesk text-2xl text-gold font-light tracking-widest">01</span>
-<div class="md:col-span-4">
-<h3 class="serif-display text-2xl sm:text-3xl text-onyx font-normal group-hover:text-gold transition-colors">
-                  Capital Markets &amp; Dispositions
-                </h3>
-</div>
-<div class="md:col-span-6 space-y-3">
-<p class="font-body text-xs sm:text-sm text-onyx-muted font-light leading-relaxed">
-                  Tailored debt and equity placement, single-asset dispositions, and tax-deferred 1031 exchanges. Our rigorous underwriting unlocks institutional capital reserves across high-barrier South Florida corridors.
-                </p>
-<div class="flex items-center gap-4 text-[10px] grotesk tracking-widest text-onyx uppercase font-medium">
-<span>• Institutional Sales</span>
-<span>• Debt Structuring</span>
-<span>• 1031 Exchange</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Vertical 02 -->
-<div class="py-8 group">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-<span class="md:col-span-2 grotesk text-2xl text-gold font-light tracking-widest">02</span>
-<div class="md:col-span-4">
-<h3 class="serif-display text-2xl sm:text-3xl text-onyx font-normal group-hover:text-gold transition-colors">
-                  Industrial &amp; Logistics Leasing
-                </h3>
-</div>
-<div class="md:col-span-6 space-y-3">
-<p class="font-body text-xs sm:text-sm text-onyx-muted font-light leading-relaxed">
-                  Comprehensive landlord representation and multinational tenant advisory. From Class-A mega distribution hubs to suburban flex space, we secure credit tenants and defend net effective rents.
-                </p>
-<div class="flex items-center gap-4 text-[10px] grotesk tracking-widest text-onyx uppercase font-medium">
-<span>• Landlord Rep</span>
-<span>• Logistics Portfolios</span>
-<span>• Lease Restructuring</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Vertical 03 -->
-<div class="py-8 last:pb-0 group">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-<span class="md:col-span-2 grotesk text-2xl text-gold font-light tracking-widest">03</span>
-<div class="md:col-span-4">
-<h3 class="serif-display text-2xl sm:text-3xl text-onyx font-normal group-hover:text-gold transition-colors">
-                  Turnkey Development &amp; Construction
-                </h3>
-</div>
-<div class="md:col-span-6 space-y-3">
-<p class="font-body text-xs sm:text-sm text-onyx-muted font-light leading-relaxed">
-                  End-to-end development oversight: municipal zoning entitlements, site feasibility, architectural space planning, and tenant improvement general contracting executed by seasoned in-house builders.
-                </p>
-<div class="flex items-center gap-4 text-[10px] grotesk tracking-widest text-onyx uppercase font-medium">
-<span>• Zoning &amp; Entitlements</span>
-<span>• Space Planning</span>
-<span>• General Contracting</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ==================== CLOSING HIGHLIGHTS & TRACK RECORD ==================== -->
-<section class="w-full py-24 sm:py-32 bg-stone-light border-b border-hairline" id="closings">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="flex flex-col md:flex-row md:items-end justify-between pb-10 mb-12 border-b border-hairline gap-6">
-<div>
-<span class="grotesk text-[10px] tracking-[0.3em] uppercase text-gold font-semibold block mb-2">Transaction Ledger</span>
-<h2 class="serif-display text-3xl sm:text-5xl text-onyx font-normal">Recent Representative Closings</h2>
-</div>
-<p class="font-body text-sm text-onyx-muted max-w-sm font-light leading-relaxed">
-          Demonstrated transaction velocity across core distribution, infill industrial, and high-density manufacturing hubs.
+        <p class="text-ink-soft leading-relaxed">
+          Over two decades, his work has spanned distribution centers, complex 1031 exchanges, and high-visibility land acquisitions across Miami-Dade, Broward, and Palm Beach.
         </p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Closing 01: 6316 NW 99th Ave -->
-<div class="bg-white border border-hairline overflow-hidden group hover:border-onyx transition-colors">
-<div class="aspect-[16/10] overflow-hidden bg-stone-tint">
-<img alt="VIVO Commercial Closing" class="hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1U2IRGh9Dh_I389WyjlqFP78eoe_4Ia8Tax6LoU6MM-8BCCTRYAZnEadEv248sxiHHhUSrFFhrDoZ7Z2OP3Pv7n5tXRWNwZ3xRvqJhAPOOF-8IfOl0Go1LxrTt4EEZ0HWFl_M4H2f2yKvKIEIGJ6czfzje1WlFtJCGa_PIqgMtseFqQat7FzrrKYcSDOwVvLFZvelxPtscRXHq1_PrGGn2Tm0uPr8L5pJtVFNqm87uQFgodM4pARkB1NfZJ"/>
-<img alt="6316 NW 99th Ave Doral Industrial Closing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAySHOwzXdRrMn2t5nCsaQdI-LRlIi3YmMkcn44ikoCbliZ28y5Rqex06fliWfhkFqnJ2as4RfexElAXHV7Yw51S-8RBFpmgUfnaK-3F6-tPTYD7a3--ezhttohDCA-dV4uDCOri5Ay2UeKfB8WgLACJejj125LmZPei-4itPAalQ_3EV4TYpIkLxP-LGwCDYyU_ouRjl5ZczN1OBH5ZXVL-5TZ0G_FJ3-253OP7dBx-00CcDAH2b-s5w"/>
-</div>
-<div class="p-6">
-<div class="flex items-center justify-between pb-3 border-b border-hairline text-[10px] grotesk uppercase tracking-wider text-onyx-muted">
-<span>Doral Infill Corridor</span>
-<span class="text-gold font-semibold">Closed Mandate</span>
-</div>
-<h3 class="serif-display text-2xl text-onyx font-normal mt-3">6316 NW 99th Ave</h3>
-<p class="font-body text-xs text-onyx-muted mt-1">Doral, FL • Industrial Infill Distribution Facility</p>
-<div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-hairline text-xs grotesk">
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Footprint</span>
-<span class="serif-display text-xl text-onyx font-normal">8,000 SF</span>
-</div>
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Clearance</span>
-<span class="serif-display text-xl text-onyx font-normal">20' Clear</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Closing 02: 14240 Palmetto Frontage Rd -->
-<div class="bg-white border border-hairline overflow-hidden group hover:border-onyx transition-colors">
-<div class="aspect-[16/10] overflow-hidden bg-stone-tint">
-<img alt="14240 Palmetto Frontage Rd Closing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ7HMrShTKnj9VuVtWlIUFFALwcr55oKcJ_VH-c9JApPO1UCem_F0SXQOcQejmtauOrb7KoYRQEM21OoEkmUHQw6CXeznjczDjgXP0DxfKTAmtA001R5aadToqV-PKIFzSjhTU7ToBcXcgEKzpOMGyWgp4Jg_U_0y347zReb83Nwh33gonuTTlvuN-cGBih8-K8oZpIrFPXJWcCf0-ODeb4R7q06yYj6khSuirzYVRQta0ur-A-Kuxhg"/>
-</div>
-<div class="p-6">
-<div class="flex items-center justify-between pb-3 border-b border-hairline text-[10px] grotesk uppercase tracking-wider text-onyx-muted">
-<span>Miami Lakes Logistics</span>
-<span class="text-gold font-semibold">Closed Mandate</span>
-</div>
-<h3 class="serif-display text-2xl text-onyx font-normal mt-3">14240 Palmetto Frontage</h3>
-<p class="font-body text-xs text-onyx-muted mt-1">Miami Lakes, FL • Prime Express Corridor Warehouse</p>
-<div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-hairline text-xs grotesk">
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Footprint</span>
-<span class="serif-display text-xl text-onyx font-normal">18,192 SF</span>
-</div>
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Loading</span>
-<span class="serif-display text-xl text-onyx font-normal">3 Docks + Ramp</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Closing 03: 7175 W 20th Ave -->
-<div class="bg-white border border-hairline overflow-hidden group hover:border-onyx transition-colors">
-<div class="aspect-[16/10] overflow-hidden bg-stone-tint">
-<img alt="7175 W 20th Ave Hialeah Closing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/>
-</div>
-<div class="p-6">
-<div class="flex items-center justify-between pb-3 border-b border-hairline text-[10px] grotesk uppercase tracking-wider text-onyx-muted">
-<span>Hialeah Manufacturing</span>
-<span class="text-gold font-semibold">Closed Mandate</span>
-</div>
-<h3 class="serif-display text-2xl text-onyx font-normal mt-3">7175 W 20th Ave</h3>
-<p class="font-body text-xs text-onyx-muted mt-1">Hialeah, FL • Heavy Industrial &amp; Manufacturing Hub</p>
-<div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-hairline text-xs grotesk">
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Footprint</span>
-<span class="serif-display text-xl text-onyx font-normal">20,198 SF</span>
-</div>
-<div>
-<span class="text-[9px] uppercase tracking-wider text-onyx-muted block">Office Flex</span>
-<span class="serif-display text-xl text-onyx font-normal">1,680 SF</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <a href="#contact" class="inline-flex items-center gap-2 border-b border-ink pb-1 text-[13px] font-medium hover:text-brass hover:border-brass transition-colors">Schedule a consultation</a>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- ==================== CONFIDENTIAL INQUIRIES & CONTACT ==================== -->
-<section class="w-full py-24 sm:py-32 bg-white" id="contact">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-<!-- Left: Direct Advisory Contact Points -->
-<div class="lg:col-span-5 flex flex-col justify-between space-y-10">
-<div class="space-y-4">
-<span class="grotesk text-[10px] tracking-[0.3em] uppercase text-gold font-semibold block">Confidential Advisory</span>
-<h2 class="serif-display text-3xl sm:text-5xl text-onyx font-normal leading-tight">
-              Initiate a Private Discussion.
-            </h2>
-<p class="font-body text-sm text-onyx-muted font-light leading-relaxed">
-              Connect directly with VIVO managing principals to discuss off-market asset valuation, portfolio capital restructuring, or tenant representation across Florida’s primary corridors.
-            </p>
-</div>
-<div class="space-y-6 pt-6 border-t border-hairline">
-<div>
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Direct Principal Line</span>
-<a class="serif-display text-3xl text-onyx hover:text-gold transition-colors block mt-1" href="tel:3058178899">(305) 817-8899</a>
-</div>
-<div>
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Institutional Correspondence</span>
-<a class="grotesk text-base text-onyx hover:text-gold transition-colors block mt-1" href="mailto:info@vivogroup.net">info@vivogroup.net</a>
-</div>
-</div>
-<!-- Physical Hubs -->
-<div class="pt-6 border-t border-hairline space-y-4">
-<span class="grotesk text-[10px] uppercase tracking-[0.25em] text-onyx-muted block">Regional Executive Offices</span>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-light text-onyx-muted grotesk">
-<div>
-<strong class="text-onyx block uppercase font-medium">Hialeah HQ</strong>
-<span>2700 W 84th St<br/>Hialeah, FL 33016</span>
-</div>
-<div>
-<strong class="text-onyx block uppercase font-medium">Ft. Lauderdale</strong>
-<span>233 SE 12th Ave<br/>Ft Lauderdale, FL 33301</span>
-</div>
-<div>
-<strong class="text-onyx block uppercase font-medium">Coral Gables</strong>
-<span>2100 Ponce De Leon #1111<br/>Coral Gables, FL 33134</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Right: Editorial White Paper Contact Form -->
-<div class="lg:col-span-7 bg-stone-light p-8 sm:p-12 border border-hairline">
-<form class="space-y-6" onsubmit="event.preventDefault(); document.getElementById('confirmation').classList.remove('hidden');">
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Principal / Contact Name</label>
-<input class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors placeholder:text-onyx-muted/40 font-body" placeholder="e.g. Sterling Vance" required="" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Corporate Entity / Owner</label>
-<input class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors placeholder:text-onyx-muted/40 font-body" placeholder="e.g. Vance Capital Partners" type="text"/>
-</div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Direct Telephone</label>
-<input class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors placeholder:text-onyx-muted/40 font-body" placeholder="(305) 000-0000" required="" type="tel"/>
-</div>
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Institutional Email</label>
-<input class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors placeholder:text-onyx-muted/40 font-body" placeholder="name@domain.com" required="" type="email"/>
-</div>
-</div>
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Mandate Objective</label>
-<select class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors font-body cursor-pointer">
-<option value="disposition">Confidential Asset Sale / Disposition</option>
-<option value="valuation">Broker Opinion of Value (BOV) &amp; Appraisal</option>
-<option value="leasing">Landlord Representation &amp; Leasing</option>
-<option value="1031">1031 Tax-Deferred Exchange Advisory</option>
-<option value="tenant">Corporate Tenant Representation</option>
-<option value="build">Turnkey Development &amp; Construction</option>
-</select>
-</div>
-<div class="space-y-1">
-<label class="grotesk text-[10px] tracking-widest uppercase text-onyx-muted font-medium">Asset Specification / Inquiries</label>
-<textarea class="w-full bg-white border border-hairline px-4 py-3 text-sm text-onyx focus:outline-none focus:border-onyx transition-colors placeholder:text-onyx-muted/40 font-body" placeholder="Detail square footage, asset type, submarket location, or specific underwriting parameters..." rows="4"></textarea>
-</div>
-<button class="w-full py-4 bg-onyx text-white hover:bg-gold text-[11px] tracking-[0.24em] uppercase font-semibold grotesk transition-colors flex items-center justify-center gap-2" type="submit">
-<span>Submit Confidential Mandate Inquiry</span>
-<span class="material-symbols-outlined text-sm">lock</span>
-</button>
-<div class="hidden p-4 bg-white border border-gold text-onyx text-xs font-light grotesk text-center" id="confirmation">
-              Your inquiry has been encrypted and delivered directly to the managing principal's office. You will receive direct executive correspondence within 2 business hours.
-            </div>
-</form>
-</div>
-</div>
-</div>
-</section>
-<!-- ==================== BESPOKE EDITORIAL FOOTER ==================== -->
-<footer class="w-full bg-stone-light border-t border-hairline py-16 lg:py-24">
-<div class="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-hairline">
-<!-- Col 1: Wordmark -->
-<div class="md:col-span-5 space-y-4">
-<div class="flex items-center gap-3">
-<svg class="h-6 w-auto text-onyx" fill="none" viewbox="0 0 48 44" xmlns="http://www.w3.org/2000/svg">
-<polygon fill="currentColor" points="0,0 12,0 24,36 36,0 48,0 28,44 20,44"></polygon>
-<polygon fill="#BFA15F" points="16,10 24,30 32,10 28,10 24,20 20,10"></polygon>
-</svg>
-<span class="grotesk text-sm tracking-[0.22em] font-semibold text-onyx uppercase">VIVO REAL ESTATE GROUP</span>
-</div>
-<p class="font-body text-xs text-onyx-muted font-light max-w-sm leading-relaxed">
-            South Florida’s premier commercial real estate advisory firm. Specializing in institutional industrial logistics, corporate landlord advisory, and capital markets transactions.
-          </p>
-<div class="pt-2 text-[11px] grotesk tracking-widest text-gold uppercase font-semibold">
-            SIOR • CCIM Designated Leadership
+
+<!-- ============ LISTINGS ============ -->
+<section id="listings" class="py-20 sm:py-28 bg-ink/[0.02] border-b border-line">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <h2 class="serif text-3xl sm:text-5xl font-medium">Featured properties</h2>
+      <p class="text-ink-soft max-w-sm text-sm font-light">Industrial, office, and retail assets across the tri-county corridor.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <article class="card bg-paper border border-line">
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="5539 SW 8th St Miami commercial property" src="https://lh3.googleusercontent.com/aida/AEtjO1VITxN0kCI1DGitOE1XcfknzLyp4HXwNHf9h7pOs_jzgudC-iOucHZoJeMMLz5p6BIs1Oa_opcoR_ImaDvu4TYQQrsFIKKKbK-JsX7UUJLesXa6oAvDFfdBTCFOTfIe0jla0hn5IVt5VCRHjUWorXFernjTLPJDjo4HuCOUtQ53K-A9ACGRupmHwzjZjvV3GlNLo9PalN7b1Xghf_9ZbtQRz2PnlZbAbpwDZI10DXYTbDEyYkB6EGDn2Wze"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-ink-soft">Miami, FL — 8th Street Corridor</span>
+          <h3 class="serif text-xl mt-1">5539 SW 8th St</h3>
+          <div class="flex gap-4 text-[12px] text-ink-soft mt-3 pt-3 border-t border-line">
+            <span>9,230 SF</span><span>0.18 AC</span><span>20+ parking</span>
           </div>
-</div>
-<!-- Col 2: Navigation -->
-<div class="md:col-span-3 space-y-3">
-<span class="grotesk text-[10px] tracking-[0.25em] uppercase text-onyx font-semibold block">Practice Areas</span>
-<ul class="space-y-2 text-xs text-onyx-muted font-light grotesk">
-<li><a class="hover:text-onyx transition-colors" href="#featured-listings">Active Listings</a></li>
-<li><a class="hover:text-onyx transition-colors" href="#capabilities">Capital Markets &amp; Debt</a></li>
-<li><a class="hover:text-onyx transition-colors" href="#capabilities">Industrial Warehouse Advisory</a></li>
-<li><a class="hover:text-onyx transition-colors" href="#capabilities">Design-Build &amp; General Contracting</a></li>
-<li><a class="hover:text-onyx transition-colors" href="#closings">Closed Mandates</a></li>
-</ul>
-</div>
-<!-- Col 3: Direct Connect -->
-<div class="md:col-span-4 space-y-3">
-<span class="grotesk text-[10px] tracking-[0.25em] uppercase text-onyx font-semibold block">Corporate Inquiries</span>
-<p class="font-body text-xs text-onyx-muted font-light leading-relaxed">
-            Direct Line: <a class="text-onyx font-medium hover:text-gold transition-colors" href="tel:3058178899">(305) 817-8899</a><br/>
-            Email: <a class="text-onyx font-medium hover:text-gold transition-colors" href="mailto:info@vivogroup.net">info@vivogroup.net</a>
-</p>
-<p class="font-body text-xs text-onyx-muted font-light pt-2">
-            Licensed Real Estate Brokerage in the State of Florida.
-          </p>
-</div>
-</div>
-<!-- Copyright & Legal -->
-<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-onyx-muted grotesk tracking-wider gap-4">
-<span>© 2026 VIVO REAL ESTATE GROUP. ALL RIGHTS RESERVED.</span>
-<div class="flex items-center gap-6">
-<a class="hover:text-onyx transition-colors" href="#">PRIVACY POLICY</a>
-<span>•</span>
-<a class="hover:text-onyx transition-colors" href="#">TERMS OF ADVISORY</a>
-<span>•</span>
-<a class="hover:text-onyx transition-colors" href="#">EQUAL HOUSING OPPORTUNITY</a>
-</div>
-</div>
-</div>
+        </div>
+      </article>
+      <article class="card bg-paper border border-line">
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="888 SE 3rd Ave Fort Lauderdale office" src="https://lh3.googleusercontent.com/aida/AEtjO1UL1LdXZM1fVwDFaf23JL-k8xvp6NIl1LnkW6DtZRfQ94BF9yeYBl_sOFev6NMagssewRWfI9QUUo_5O99Qh6cAvbrqRGAMBQ62HWdw8TM-4FeA497Aah6FtD4nYuQ7-yPIomD8qfcYHkGXZmLBb8XTnJAwnzogc0WmfuNsKjhDtBSFNgcd39j_K-pwP3J58HVwv940ojpx3vbQk4u1gPuAO6OPubQZxGdjty9RGI6WHfkYlTRk1Ngv5MI"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-ink-soft">Fort Lauderdale, FL — Downtown</span>
+          <h3 class="serif text-xl mt-1">888 SE 3rd Ave, #502</h3>
+          <div class="flex gap-4 text-[12px] text-ink-soft mt-3 pt-3 border-t border-line">
+            <span>3,220 SF</span><span>10' ceiling</span><span>10 suites</span>
+          </div>
+        </div>
+      </article>
+      <article class="card bg-paper border border-line">
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14951 S Dixie Hwy showroom" src="https://lh3.googleusercontent.com/aida/AEtjO1VkDLno8N46M2Q6nRW-ZcrD4du6hODowZvG0VfPD9JfXe6HrB8tkqasrzjL1sG4fgw9Adt2aJQg1DpUZ9zf7z2dxdjJ_TXV1sQlLUrwWCScstBWsPCgbxbSxyb-jqbM2nqLbj1NhB098gqZBLP3hUbtuRyBStyfXPmU2uZyeNxJ0bFhKopdRNnvwXIfyXm7tZzTw5GCumPFLnzTi0Lwp8O3LrD_CnPebGFVrGjbNELwkCTA03_VQ-2F5bo"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-ink-soft">Palmetto Bay, FL — US-1</span>
+          <h3 class="serif text-xl mt-1">14951 S Dixie Hwy</h3>
+          <div class="flex gap-4 text-[12px] text-ink-soft mt-3 pt-3 border-t border-line">
+            <span>10,954 SF</span><span>0.57 AC</span><span>34+ parking</span>
+          </div>
+        </div>
+      </article>
+      <article class="card bg-ink text-paper border border-ink">
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="15002 NW 107th Ave flagship industrial" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-paper/60">Hialeah Gardens, FL — Industrial Hub</span>
+          <h3 class="serif text-xl mt-1">15002 NW 107th Ave</h3>
+          <div class="flex gap-4 text-[12px] text-paper/60 mt-3 pt-3 border-t border-white/15">
+            <span>64,000 SF</span><span>32' clear</span><span>35 docks</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVISORY ============ -->
+<section id="advisory" class="py-20 sm:py-28 border-b border-line">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <h2 class="serif text-3xl sm:text-5xl font-medium leading-tight">A fiduciary model built for South Florida.</h2>
+      <p class="text-ink-soft font-light leading-relaxed mt-5">VIVO synchronizes capital markets intelligence, tenant representation, and construction delivery into one standard, led personally by firm leadership.</p>
+      <a href="tel:3058178899" class="serif text-2xl block mt-8 hover:text-brass transition-colors">(305) 817-8899</a>
+    </div>
+    <div class="lg:col-span-8 divide-y divide-line">
+      <div class="py-7 first:pt-0">
+        <h3 class="serif text-2xl sm:text-3xl">Capital Markets &amp; Dispositions</h3>
+        <p class="text-ink-soft text-sm font-light leading-relaxed mt-2 max-w-2xl">Debt and equity placement, single-asset dispositions, and tax-deferred 1031 exchanges backed by rigorous underwriting.</p>
+      </div>
+      <div class="py-7">
+        <h3 class="serif text-2xl sm:text-3xl">Industrial &amp; Logistics Leasing</h3>
+        <p class="text-ink-soft text-sm font-light leading-relaxed mt-2 max-w-2xl">Landlord representation and tenant advisory, from Class-A distribution hubs to suburban flex space.</p>
+      </div>
+      <div class="py-7 last:pb-0">
+        <h3 class="serif text-2xl sm:text-3xl">Turnkey Development</h3>
+        <p class="text-ink-soft text-sm font-light leading-relaxed mt-2 max-w-2xl">Zoning entitlements, feasibility, space planning, and tenant improvement contracting handled in-house.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSINGS ============ -->
+<section id="closings" class="py-20 sm:py-28 bg-ink/[0.02] border-b border-line">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
+    <h2 class="serif text-3xl sm:text-5xl font-medium mb-12">Recent closings</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="card bg-paper border border-line">
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="6316 NW 99th Ave Doral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAySHOwzXdRrMn2t5nCsaQdI-LRlIi3YmMkcn44ikoCbliZ28y5Rqex06fliWfhkFqnJ2as4RfexElAXHV7Yw51S-8RBFpmgUfnaK-3F6-tPTYD7a3--ezhttohDCA-dV4uDCOri5Ay2UeKfB8WgLACJejj125LmZPei-4itPAalQ_3EV4TYpIkLxP-LGwCDYyU_ouRjl5ZczN1OBH5ZXVL-5TZ0G_FJ3-253OP7dBx-00CcDAH2b-s5w"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-brass font-medium">Closed</span>
+          <h3 class="serif text-xl mt-1">6316 NW 99th Ave</h3>
+          <p class="text-[12px] text-ink-soft mt-1">Doral, FL — 8,000 SF · 20' clear</p>
+        </div>
+      </div>
+      <div class="card bg-paper border border-line">
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14240 Palmetto Frontage Rd" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ7HMrShTKnj9VuVtWlIUFFALwcr55oKcJ_VH-c9JApPO1UCem_F0SXQOcQejmtauOrb7KoYRQEM21OoEkmUHQw6CXeznjczDjgXP0DxfKTAmtA001R5aadToqV-PKIFzSjhTU7ToBcXcgEKzpOMGyWgp4Jg_U_0y347zReb83Nwh33gonuTTlvuN-cGBih8-K8oZpIrFPXJWcCf0-ODeb4R7q06yYj6khSuirzYVRQta0ur-A-Kuxhg"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-brass font-medium">Closed</span>
+          <h3 class="serif text-xl mt-1">14240 Palmetto Frontage</h3>
+          <p class="text-[12px] text-ink-soft mt-1">Miami Lakes, FL — 18,192 SF · 3 docks + ramp</p>
+        </div>
+      </div>
+      <div class="card bg-paper border border-line">
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="7175 W 20th Ave Hialeah" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/></div>
+        <div class="p-5">
+          <span class="text-[11px] text-brass font-medium">Closed</span>
+          <h3 class="serif text-xl mt-1">7175 W 20th Ave</h3>
+          <p class="text-[12px] text-ink-soft mt-1">Hialeah, FL — 20,198 SF · 1,680 SF office</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-20 sm:py-28">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-5 space-y-8">
+      <div>
+        <h2 class="serif text-3xl sm:text-5xl font-medium leading-tight">Let's talk privately.</h2>
+        <p class="text-ink-soft font-light leading-relaxed mt-4">Reach VIVO's principals directly for off-market valuation, capital restructuring, or tenant representation.</p>
+      </div>
+      <div class="space-y-5 pt-2">
+        <div><span class="text-[11px] text-ink-soft block">Direct line</span><a href="tel:3058178899" class="serif text-2xl hover:text-brass transition-colors">(305) 817-8899</a></div>
+        <div><span class="text-[11px] text-ink-soft block">Email</span><a href="mailto:info@vivogroup.net" class="hover:text-brass transition-colors">info@vivogroup.net</a></div>
+      </div>
+      <div class="pt-6 border-t border-line grid grid-cols-1 sm:grid-cols-3 gap-4 text-[13px] text-ink-soft">
+        <div><strong class="text-ink block">Hialeah HQ</strong>2700 W 84th St<br/>Hialeah, FL 33016</div>
+        <div><strong class="text-ink block">Ft. Lauderdale</strong>233 SE 12th Ave<br/>Ft Lauderdale, FL 33301</div>
+        <div><strong class="text-ink block">Coral Gables</strong>2100 Ponce De Leon #1111<br/>Coral Gables, FL 33134</div>
+      </div>
+    </div>
+    <div class="lg:col-span-7 bg-ink/[0.03] p-6 sm:p-10 border border-line">
+      <form class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('confirmation').classList.remove('hidden');">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div><label class="text-[11px] text-ink-soft block mb-1">Name</label><input required type="text" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"/></div>
+          <div><label class="text-[11px] text-ink-soft block mb-1">Company</label><input type="text" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"/></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div><label class="text-[11px] text-ink-soft block mb-1">Phone</label><input required type="tel" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"/></div>
+          <div><label class="text-[11px] text-ink-soft block mb-1">Email</label><input required type="email" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"/></div>
+        </div>
+        <div><label class="text-[11px] text-ink-soft block mb-1">What do you need?</label>
+          <select class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink">
+            <option>Asset sale / disposition</option>
+            <option>Broker opinion of value</option>
+            <option>Landlord representation</option>
+            <option>1031 exchange advisory</option>
+            <option>Tenant representation</option>
+            <option>Development &amp; construction</option>
+          </select>
+        </div>
+        <div><label class="text-[11px] text-ink-soft block mb-1">Details</label><textarea rows="4" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"></textarea></div>
+        <button type="submit" class="w-full py-4 bg-ink text-paper hover:bg-brass text-[13px] font-medium tracking-wide transition-colors">Submit inquiry</button>
+        <div id="confirmation" class="hidden p-4 bg-paper border border-brass text-sm text-center">Thank you — your inquiry has been sent. We'll follow up within 2 business hours.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line py-14">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div>
+      <span class="serif text-xl">VIVO Real Estate Group</span>
+      <p class="text-[12px] text-ink-soft mt-1">Licensed Florida real estate brokerage. Equal Housing Opportunity.</p>
+    </div>
+    <span class="text-[12px] text-ink-soft">© 2026 VIVO Real Estate Group</span>
+  </div>
 </footer>
-<!-- Script for Mobile Menu Toggle -->
+
 <script>
-    const mobileBtn = document.getElementById('mobile-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  </script>
-</body></html>
+  const header = document.querySelector('header');
+  const bar = document.getElementById('scrollbar');
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('at-top', y < 40);
+    header.classList.toggle('solid', y >= 40);
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  menuBtn.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+</script>
+</body>
+</html>
