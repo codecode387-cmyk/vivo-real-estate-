@@ -13,12 +13,14 @@
     theme: {
       extend: {
         colors: {
-          ink: "#14181C",
-          "ink-soft": "#4A4F55",
-          paper: "#FBFAF6",
-          line: "#E2DFD6",
-          brass: "#A9813F",
-          "brass-deep": "#7E5F2C",
+          ink: "#12151B",
+          "ink-soft": "#565C63",
+          paper: "#FAF8F2",
+          stone: "#F2EEE4",
+          line: "#E3DECF",
+          brass: "#AD8A4E",
+          "brass-deep": "#8A6C36",
+          "brass-light": "#D7BD87",
         },
         fontFamily: {
           serif: ['Fraunces', 'Georgia', 'serif'],
@@ -35,7 +37,7 @@
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
   html{scroll-padding-top:88px; scroll-behavior:smooth;}
-  html,body{margin:0;background:#FBFAF6;color:#14181C;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+  html,body{margin:0;background:#FAF8F2;color:#12151B;font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased;}
   .serif{font-family:'Fraunces','Georgia',serif; font-optical-sizing:auto;}
 
   /* Hero entrance — one orchestrated sequence, not per-section */
@@ -45,16 +47,16 @@
   @keyframes rise{to{opacity:1; transform:translateY(0);}}
 
   header{transition:background-color .4s ease, border-color .4s ease, backdrop-filter .4s ease;}
-  header.solid{background:rgba(251,250,246,.96); backdrop-filter:blur(10px); border-bottom-color:#E2DFD6;}
+  header.solid{background:rgba(250,248,242,.96); backdrop-filter:blur(10px); border-bottom-color:#E3DECF;}
   header.at-top{background:transparent; border-bottom-color:transparent;}
-  header.at-top .nav-link, header.at-top .brand-word{color:#FBFAF6;}
-  header.at-top .brand-sub{color:rgba(251,250,246,.7);}
-  header.at-top .icon-ink{color:#FBFAF6;}
-  header:not(.at-top) .nav-link, header:not(.at-top) .brand-word{color:#14181C;}
-  header:not(.at-top) .brand-sub{color:#4A4F55;}
-  header:not(.at-top) .icon-ink{color:#14181C;}
+  header.at-top .nav-link, header.at-top .brand-word{color:#FAF8F2;}
+  header.at-top .brand-sub{color:rgba(250,248,242,.7);}
+  header.at-top .icon-ink{color:#FAF8F2;}
+  header:not(.at-top) .nav-link, header:not(.at-top) .brand-word{color:#12151B;}
+  header:not(.at-top) .brand-sub{color:#565C63;}
+  header:not(.at-top) .icon-ink{color:#12151B;}
 
-  #scrollbar{position:fixed; top:0; left:0; height:2px; background:#A9813F; width:0%; z-index:60; transition:width .1s linear;}
+  #scrollbar{position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,#AD8A4E,#D7BD87); width:0%; z-index:60; transition:width .1s linear;}
 
   #mobile-menu{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.19,1,.22,1);}
   #mobile-menu.open{max-height:420px;}
@@ -73,7 +75,7 @@
   .sr-stagger.in > *:nth-child(4){transition-delay:.35s}
 
   .underline-grow{position:relative;}
-  .underline-grow::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:#A9813F;transition:width .5s cubic-bezier(.19,1,.22,1);}
+  .underline-grow::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:#AD8A4E;transition:width .5s cubic-bezier(.19,1,.22,1);}
   .underline-grow:hover::after{width:100%;}
 
   @media (prefers-reduced-motion: reduce){
@@ -89,7 +91,7 @@
 
 <!-- ============ HEADER ============ -->
 <header class="at-top fixed top-0 left-0 right-0 z-50 border-b border-transparent" style="padding-top:env(safe-area-inset-top,0px)">
-  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-[76px] flex items-center justify-between">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-[64px] sm:h-[76px] flex items-center justify-between">
     <a href="#top" class="flex items-baseline gap-2.5">
       <span class="serif brand-word text-[26px] tracking-[0.02em] font-medium leading-none">VIVO</span>
       <span class="brand-sub text-[10px] tracking-[0.28em] uppercase leading-none hidden sm:inline">Real Estate Group</span>
@@ -126,7 +128,7 @@
 </header>
 
 <!-- ============ HERO — full-bleed video, name up front ============ -->
-<section id="top" class="relative w-full h-[100svh] min-h-[560px] overflow-hidden bg-ink">
+<section id="top" class="relative w-full h-[92svh] min-h-[520px] overflow-hidden bg-ink">
   <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
     <source src="hero-video.mp4" type="video/mp4"/>
   </video>
@@ -134,13 +136,13 @@
 
   <div class="relative z-10 h-full flex flex-col justify-end px-6 sm:px-10 lg:px-14 pb-14 sm:pb-16 max-w-[1440px] mx-auto">
     <span class="reveal d1 text-[11px] tracking-[0.25em] uppercase text-paper/70 mb-4">Miami · Broward · Palm Beach</span>
-    <h1 class="reveal d2 serif text-[19vw] sm:text-[10vw] lg:text-[7.5rem] leading-[0.86] tracking-tight text-paper font-medium">VIVO</h1>
+    <h1 class="reveal d2 serif text-[15vw] sm:text-[10vw] lg:text-[7.5rem] leading-[0.86] tracking-tight text-paper font-medium">VIVO</h1>
     <p class="reveal d3 text-paper/85 text-base sm:text-lg max-w-lg font-light leading-relaxed mt-5">
       Institutional investment sales and industrial &amp; office advisory for South Florida's most demanding owners — led personally by a dual SIOR &amp; CCIM principal.
     </p>
-    <div class="reveal d4 flex flex-wrap items-center gap-4 mt-8">
-      <a href="#listings" class="bg-paper text-ink hover:bg-brass hover:text-paper px-7 py-3.5 text-[12px] font-medium tracking-wide transition-colors">View Portfolio</a>
-      <a href="#contact" class="border border-paper/50 text-paper hover:border-paper px-7 py-3.5 text-[12px] font-medium tracking-wide transition-colors">Request Appraisal</a>
+    <div class="reveal d4 flex flex-wrap items-center gap-3 sm:gap-4 mt-7 sm:mt-8">
+      <a href="#listings" class="bg-paper text-ink hover:bg-brass hover:text-paper px-5 sm:px-7 py-3 sm:py-3.5 text-[11px] sm:text-[12px] font-medium tracking-wide transition-colors">View Portfolio</a>
+      <a href="#contact" class="border border-paper/50 text-paper hover:border-paper px-5 sm:px-7 py-3 sm:py-3.5 text-[11px] sm:text-[12px] font-medium tracking-wide transition-colors">Request Appraisal</a>
     </div>
   </div>
 </section>
@@ -156,7 +158,7 @@
 </div>
 
 <!-- ============ ABOUT US ============ -->
-<section id="about" class="py-20 sm:py-28 border-b border-line">
+<section id="about" class="py-14 sm:py-20 lg:py-28 border-b border-line">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
     <div class="lg:col-span-4 sr">
       <span class="text-[11px] tracking-[0.2em] uppercase text-brass">About us</span>
@@ -177,7 +179,7 @@
 </section>
 
 <!-- ============ PRINCIPAL ============ -->
-<section id="principal" class="py-20 sm:py-28 border-b border-line">
+<section id="principal" class="py-14 sm:py-20 lg:py-28 border-b border-line">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       <div class="lg:col-span-5 sr">
@@ -201,7 +203,7 @@
 </section>
 
 <!-- ============ LISTINGS ============ -->
-<section id="listings" class="py-20 sm:py-28 bg-ink/[0.02] border-b border-line">
+<section id="listings" class="py-14 sm:py-20 lg:py-28 bg-stone border-b border-line">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
     <div class="sr flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
       <h2 class="serif text-3xl sm:text-5xl font-medium">Featured properties</h2>
@@ -253,7 +255,7 @@
 </section>
 
 <!-- ============ ADVISORY ============ -->
-<section id="advisory" class="py-20 sm:py-28 border-b border-line">
+<section id="advisory" class="py-14 sm:py-20 lg:py-28 border-b border-line">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
     <div class="lg:col-span-4 sr">
       <h2 class="serif text-3xl sm:text-5xl font-medium leading-tight">A fiduciary model built for South Florida.</h2>
@@ -278,7 +280,7 @@
 </section>
 
 <!-- ============ WHY WE'RE THE BEST ============ -->
-<section id="why-us" class="py-20 sm:py-28 bg-ink text-paper border-b border-white/10">
+<section id="why-us" class="py-14 sm:py-20 lg:py-28 bg-ink text-paper border-b border-white/10">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
     <div class="sr max-w-2xl mb-14">
       <span class="text-[11px] tracking-[0.2em] uppercase text-brass">Why VIVO</span>
@@ -310,7 +312,7 @@
 </section>
 
 <!-- ============ CLOSINGS ============ -->
-<section id="closings" class="py-20 sm:py-28 bg-ink/[0.02] border-b border-line">
+<section id="closings" class="py-14 sm:py-20 lg:py-28 bg-stone border-b border-line">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
     <h2 class="serif text-3xl sm:text-5xl font-medium mb-12 sr">Recent closings</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -343,7 +345,7 @@
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section id="contact" class="py-20 sm:py-28">
+<section id="contact" class="py-14 sm:py-20 lg:py-28">
   <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
     <div class="lg:col-span-5 space-y-8">
       <div>
@@ -369,7 +371,7 @@
         </iframe>
       </div>
     </div>
-    <div class="lg:col-span-7 bg-ink/[0.03] p-6 sm:p-10 border border-line">
+    <div class="lg:col-span-7 bg-stone p-6 sm:p-10 border border-line">
       <form class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('confirmation').classList.remove('hidden');">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div><label class="text-[11px] text-ink-soft block mb-1">Name</label><input required type="text" class="w-full bg-paper border border-line px-4 py-3 text-sm focus:outline-none focus:border-ink"/></div>
@@ -398,13 +400,62 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="border-t border-line py-14">
-  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-    <div>
-      <span class="serif text-xl">VIVO Real Estate Group</span>
-      <p class="text-[12px] text-ink-soft mt-1">Licensed Florida real estate brokerage. Equal Housing Opportunity.</p>
+<footer class="bg-ink text-paper">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 pt-16 sm:pt-20 pb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
+      <!-- Brand -->
+      <div class="lg:col-span-4">
+        <span class="serif text-2xl">VIVO</span>
+        <span class="block text-[11px] tracking-[0.25em] uppercase text-paper/50 mt-1">Real Estate Group</span>
+        <p class="text-paper/60 text-sm leading-relaxed mt-5 max-w-xs">South Florida commercial real estate advisory — industrial, office, and retail, led personally by SIOR &amp; CCIM leadership.</p>
+        <div class="flex items-center gap-4 mt-6">
+          <a href="https://www.linkedin.com/company/vivorealestategroup" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-paper/60 hover:text-brass-light transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.05-1.86-3.05-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/vivorealestategroupinc" target="_blank" rel="noopener" aria-label="Facebook" class="text-paper/60 hover:text-brass-light transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.3c0-.87.24-1.46 1.5-1.46H16.6V4.14C16.3 4.1 15.3 4 14.15 4 11.75 4 10.1 5.46 10.1 8V10.5H7.5v3h2.6V21z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/vivorealestategroup/" target="_blank" rel="noopener" aria-label="Instagram" class="text-paper/60 hover:text-brass-light transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.05.05 1.6.22 2 .37.5.19.86.42 1.24.8.38.38.6.74.8 1.24.15.4.32.95.37 2 .05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.05-.22 1.6-.37 2-.2.5-.42.86-.8 1.24-.38.38-.74.6-1.24.8-.4.15-.95.32-2 .37-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1.05-.05-1.6-.22-2-.37-.5-.2-.86-.42-1.24-.8-.38-.38-.6-.74-.8-1.24-.15-.4-.32-.95-.37-2C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.05.22-1.6.37-2 .2-.5.42-.86.8-1.24.38-.38.74-.6 1.24-.8.4-.15.95-.32 2-.37C7.8 2.2 8.1 2.2 10.8 2.2zM12 0C9.28 0 8.94 0 7.87.06 6.8.11 6.07.28 5.44.53c-.66.26-1.22.6-1.77 1.16-.56.55-.9 1.11-1.16 1.77-.25.63-.42 1.36-.47 2.43C2 6.94 2 7.28 2 10v4c0 2.72 0 3.06.06 4.13.05 1.07.22 1.8.47 2.43.26.66.6 1.22 1.16 1.77.55.56 1.11.9 1.77 1.16.63.25 1.36.42 2.43.47C8.94 24 9.28 24 12 24s3.06 0 4.13-.06c1.07-.05 1.8-.22 2.43-.47.66-.26 1.22-.6 1.77-1.16.56-.55.9-1.11 1.16-1.77.25-.63.42-1.36.47-2.43.06-1.07.06-1.41.06-4.13v-4c0-2.72 0-3.06-.06-4.13-.05-1.07-.22-1.8-.47-2.43a5.5 5.5 0 0 0-1.16-1.77A5.5 5.5 0 0 0 18.56.53c-.63-.25-1.36-.42-2.43-.47C15.06 0 14.72 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM18.4 5.6a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Explore -->
+      <div class="lg:col-span-2">
+        <span class="text-[11px] tracking-[0.2em] uppercase text-paper/50 block mb-4">Explore</span>
+        <ul class="space-y-3 text-sm text-paper/75">
+          <li><a href="#about" class="hover:text-brass-light transition-colors">About Us</a></li>
+          <li><a href="#listings" class="hover:text-brass-light transition-colors">Properties</a></li>
+          <li><a href="#closings" class="hover:text-brass-light transition-colors">Closings</a></li>
+          <li><a href="#why-us" class="hover:text-brass-light transition-colors">Why VIVO</a></li>
+        </ul>
+      </div>
+      <!-- Practice areas -->
+      <div class="lg:col-span-3">
+        <span class="text-[11px] tracking-[0.2em] uppercase text-paper/50 block mb-4">Practice Areas</span>
+        <ul class="space-y-3 text-sm text-paper/75">
+          <li><a href="#advisory" class="hover:text-brass-light transition-colors">Capital Markets &amp; Dispositions</a></li>
+          <li><a href="#advisory" class="hover:text-brass-light transition-colors">Industrial &amp; Logistics Leasing</a></li>
+          <li><a href="#advisory" class="hover:text-brass-light transition-colors">Turnkey Development</a></li>
+        </ul>
+      </div>
+      <!-- Offices -->
+      <div class="lg:col-span-3">
+        <span class="text-[11px] tracking-[0.2em] uppercase text-paper/50 block mb-4">Offices</span>
+        <ul class="space-y-4 text-sm text-paper/75">
+          <li><strong class="text-paper block font-medium">Hialeah HQ</strong>2700 W 84th St, FL 33016</li>
+          <li><strong class="text-paper block font-medium">Ft. Lauderdale</strong>233 SE 12th Ave, FL 33301</li>
+          <li><strong class="text-paper block font-medium">Coral Gables</strong>2100 Ponce De Leon #1111</li>
+        </ul>
+      </div>
     </div>
-    <span class="text-[12px] text-ink-soft">© 2026 VIVO Real Estate Group</span>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 text-[12px] text-paper/50">
+      <span>© 2026 VIVO Real Estate Group. Licensed Florida real estate brokerage. Equal Housing Opportunity.</span>
+      <div class="flex items-center gap-6">
+        <a href="tel:3058178899" class="hover:text-brass-light transition-colors">(305) 817-8899</a>
+        <a href="mailto:info@vivogroup.net" class="hover:text-brass-light transition-colors">info@vivogroup.net</a>
+      </div>
+    </div>
   </div>
 </footer>
 
