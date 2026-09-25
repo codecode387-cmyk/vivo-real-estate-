@@ -86,8 +86,17 @@
   }
 
   @media (max-width:480px){
-    #top h1{font-size:19vw;}
+    #top h1{font-size:13vw; line-height:0.95;}
+    h2.serif{font-size:1.6rem !important; line-height:1.25;}
+    #stats{padding-left:0.9rem; padding-right:0.9rem; padding-top:1.5rem; padding-bottom:1.5rem; column-gap:0.75rem; row-gap:1.25rem;}
+    #stats span.serif{font-size:1.25rem !important; line-height:1.15;}
+    #stats .block{font-size:10px; line-height:1.3;}
   }
+  @media (max-width:380px){
+    #top h1{font-size:12vw;}
+    #stats span.serif{font-size:1.1rem !important;}
+  }
+  h1, h2, h3, .stat-num, #stats span.serif{ overflow-wrap:break-word; word-break:break-word; }
 
   /* ===== Glass effect ===== */
   .glass{
@@ -172,7 +181,7 @@
 
   <div class="relative z-10 h-full flex flex-col justify-end px-6 sm:px-10 lg:px-14 pb-14 sm:pb-16 max-w-[1440px] mx-auto">
     <span class="reveal d1 text-[11px] tracking-[0.25em] uppercase text-paper/70 mb-4">Miami · Broward · Palm Beach</span>
-    <h1 class="reveal d2 serif text-[15vw] sm:text-[10vw] lg:text-[7.5rem] leading-[0.86] tracking-tight text-paper font-medium">VIVO</h1>
+    <h1 class="reveal d2 serif text-[13vw] sm:text-[10vw] lg:text-[7.5rem] leading-[0.86] tracking-tight text-paper font-medium">VIVO</h1>
     <p class="reveal d3 text-paper/85 text-base sm:text-lg max-w-lg font-light leading-relaxed mt-5">
       South Florida's trusted, award-winning commercial real estate firm — leasing, sales, investment &amp; asset management, and development advisory across industrial, office, retail, and multifamily properties.
     </p>
@@ -184,12 +193,12 @@
 </section>
 
 <!-- Stats strip — floating glass panel -->
-<div class="relative z-20 px-4 sm:px-10 lg:px-14 -mt-12 sm:-mt-16 mb-10 sm:mb-14">
-  <div id="stats" class="glass text-paper max-w-[1200px] mx-auto rounded-2xl px-6 sm:px-10 py-8 sm:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-    <div><span class="stat-num serif text-3xl sm:text-4xl font-medium" data-prefix="$" data-target="1.2" data-decimals="1" data-suffix="B+">$0B+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Transaction volume</span></div>
-    <div><span class="stat-num serif text-3xl sm:text-4xl font-medium" data-target="250" data-suffix="+">0+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Deals closed</span></div>
-    <div><span class="serif text-3xl sm:text-4xl font-medium">SIOR/CCIM</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Dual designation</span></div>
-    <div><span class="stat-num serif text-3xl sm:text-4xl font-medium" data-target="20" data-suffix="+ yrs">0+ yrs</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Tri-county focus</span></div>
+<div class="relative z-20 px-4 sm:px-10 lg:px-14 -mt-10 sm:-mt-16 mb-10 sm:mb-14">
+  <div id="stats" class="glass text-paper max-w-[1200px] mx-auto rounded-2xl px-4 sm:px-10 py-7 sm:py-10 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6 sm:gap-8">
+    <div><span class="stat-num serif text-2xl sm:text-4xl font-medium" data-prefix="$" data-target="1.2" data-decimals="1" data-suffix="B+">$0B+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Transaction volume</span></div>
+    <div><span class="stat-num serif text-2xl sm:text-4xl font-medium" data-target="250" data-suffix="+">0+</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Deals closed</span></div>
+    <div><span class="serif text-2xl sm:text-4xl font-medium">SIOR/CCIM</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Dual designation</span></div>
+    <div><span class="stat-num serif text-2xl sm:text-4xl font-medium" data-target="20" data-suffix="+ yrs">0+ yrs</span><span class="block text-[11px] tracking-wide text-paper/60 mt-1">Tri-county focus</span></div>
   </div>
 </div>
 
@@ -247,7 +256,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <article class="card bg-paper border border-line">
-        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="5539 SW 8th St Miami commercial property" src="images/vivo-image-1.jpg"/></div>
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="5539 SW 8th St Miami commercial property" src="https://lh3.googleusercontent.com/aida/AEtjO1VITxN0kCI1DGitOE1XcfknzLyp4HXwNHf9h7pOs_jzgudC-iOucHZoJeMMLz5p6BIs1Oa_opcoR_ImaDvu4TYQQrsFIKKKbK-JsX7UUJLesXa6oAvDFfdBTCFOTfIe0jla0hn5IVt5VCRHjUWorXFernjTLPJDjo4HuCOUtQ53K-A9ACGRupmHwzjZjvV3GlNLo9PalN7b1Xghf_9ZbtQRz2PnlZbAbpwDZI10DXYTbDEyYkB6EGDn2Wze"/></div>
         <div class="p-5">
           <span class="text-[11px] text-ink-soft">Miami, FL — 8th Street Corridor</span>
           <h3 class="serif text-xl mt-1">5539 SW 8th St</h3>
@@ -257,7 +266,7 @@
         </div>
       </article>
       <article class="card bg-paper border border-line">
-        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="888 SE 3rd Ave Fort Lauderdale office" src="images/vivo-image-2.jpg"/></div>
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="888 SE 3rd Ave Fort Lauderdale office" src="https://lh3.googleusercontent.com/aida/AEtjO1UL1LdXZM1fVwDFaf23JL-k8xvp6NIl1LnkW6DtZRfQ94BF9yeYBl_sOFev6NMagssewRWfI9QUUo_5O99Qh6cAvbrqRGAMBQ62HWdw8TM-4FeA497Aah6FtD4nYuQ7-yPIomD8qfcYHkGXZmLBb8XTnJAwnzogc0WmfuNsKjhDtBSFNgcd39j_K-pwP3J58HVwv940ojpx3vbQk4u1gPuAO6OPubQZxGdjty9RGI6WHfkYlTRk1Ngv5MI"/></div>
         <div class="p-5">
           <span class="text-[11px] text-ink-soft">Fort Lauderdale, FL — Downtown</span>
           <h3 class="serif text-xl mt-1">888 SE 3rd Ave, #502</h3>
@@ -267,7 +276,7 @@
         </div>
       </article>
       <article class="card bg-paper border border-line">
-        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14951 S Dixie Hwy showroom" src="images/vivo-image-3.jpg"/></div>
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14951 S Dixie Hwy showroom" src="https://lh3.googleusercontent.com/aida/AEtjO1VkDLno8N46M2Q6nRW-ZcrD4du6hODowZvG0VfPD9JfXe6HrB8tkqasrzjL1sG4fgw9Adt2aJQg1DpUZ9zf7z2dxdjJ_TXV1sQlLUrwWCScstBWsPCgbxbSxyb-jqbM2nqLbj1NhB098gqZBLP3hUbtuRyBStyfXPmU2uZyeNxJ0bFhKopdRNnvwXIfyXm7tZzTw5GCumPFLnzTi0Lwp8O3LrD_CnPebGFVrGjbNELwkCTA03_VQ-2F5bo"/></div>
         <div class="p-5">
           <span class="text-[11px] text-ink-soft">Palmetto Bay, FL — US-1</span>
           <h3 class="serif text-xl mt-1">14951 S Dixie Hwy</h3>
@@ -277,7 +286,7 @@
         </div>
       </article>
       <article class="card bg-ink text-paper border border-ink">
-        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="15002 NW 107th Ave flagship industrial" src="images/vivo-image-4.jpg"/></div>
+        <div class="aspect-[4/3] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="15002 NW 107th Ave flagship industrial" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/></div>
         <div class="p-5">
           <span class="text-[11px] text-paper/60">Hialeah Gardens, FL — Industrial Hub</span>
           <h3 class="serif text-xl mt-1">15002 NW 107th Ave</h3>
@@ -357,7 +366,7 @@
     <h2 class="serif text-3xl sm:text-5xl font-medium mb-12 sr">Recent closings</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="card bg-paper border border-line">
-        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="6316 NW 99th Ave Doral" src="images/vivo-image-5.jpg"/></div>
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="6316 NW 99th Ave Doral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAySHOwzXdRrMn2t5nCsaQdI-LRlIi3YmMkcn44ikoCbliZ28y5Rqex06fliWfhkFqnJ2as4RfexElAXHV7Yw51S-8RBFpmgUfnaK-3F6-tPTYD7a3--ezhttohDCA-dV4uDCOri5Ay2UeKfB8WgLACJejj125LmZPei-4itPAalQ_3EV4TYpIkLxP-LGwCDYyU_ouRjl5ZczN1OBH5ZXVL-5TZ0G_FJ3-253OP7dBx-00CcDAH2b-s5w"/></div>
         <div class="p-5">
           <span class="text-[11px] text-brass font-medium">Closed</span>
           <h3 class="serif text-xl mt-1">6316 NW 99th Ave</h3>
@@ -365,7 +374,7 @@
         </div>
       </div>
       <div class="card bg-paper border border-line">
-        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14240 Palmetto Frontage Rd" src="images/vivo-image-6.jpg"/></div>
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="14240 Palmetto Frontage Rd" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ7HMrShTKnj9VuVtWlIUFFALwcr55oKcJ_VH-c9JApPO1UCem_F0SXQOcQejmtauOrb7KoYRQEM21OoEkmUHQw6CXeznjczDjgXP0DxfKTAmtA001R5aadToqV-PKIFzSjhTU7ToBcXcgEKzpOMGyWgp4Jg_U_0y347zReb83Nwh33gonuTTlvuN-cGBih8-K8oZpIrFPXJWcCf0-ODeb4R7q06yYj6khSuirzYVRQta0ur-A-Kuxhg"/></div>
         <div class="p-5">
           <span class="text-[11px] text-brass font-medium">Closed</span>
           <h3 class="serif text-xl mt-1">14240 Palmetto Frontage</h3>
@@ -373,7 +382,7 @@
         </div>
       </div>
       <div class="card bg-paper border border-line">
-        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="7175 W 20th Ave Hialeah" src="images/vivo-image-7.jpg"/></div>
+        <div class="aspect-[16/10] overflow-hidden"><img class="card-img w-full h-full object-cover" alt="7175 W 20th Ave Hialeah" src="https://lh3.googleusercontent.com/aida/AEtjO1WW4L2dE4c0eF_RwkuTeUeiRN9wzwmh6LYmpSCO4AcILFe4TqVTZmWvCbYsyZoAtl4BfR17tJdE30fXclZJCNj05eQEY3uoN4HJc2Mzrt6Ev99nC5DYtYTu4h0heQkO5RO61f5mT02aCSugLZsGFaqn34-DdRxhnjPLur_PG10HqqG6B4A4aHiO8pR4IbcfFTlCJvdcCAW7Wq3aHILvaOqROwS88Pw9olNdGogfzs1cvUIM-WI7jibW1cYU"/></div>
         <div class="p-5">
           <span class="text-[11px] text-brass font-medium">Closed</span>
           <h3 class="serif text-xl mt-1">7175 W 20th Ave</h3>
