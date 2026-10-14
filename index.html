@@ -42,6 +42,13 @@
   .serif{font-family:'Fraunces','Georgia',serif; font-optical-sizing:auto;}
   img{max-width:100%;}
 
+  /* Never show a native play button or controls on the hero video */
+  #hero-video::-webkit-media-controls,
+  #hero-video::-webkit-media-controls-panel,
+  #hero-video::-webkit-media-controls-play-button,
+  #hero-video::-webkit-media-controls-start-playback-button,
+  #hero-video::-webkit-media-controls-overlay-play-button{display:none !important; -webkit-appearance:none; opacity:0 !important;}
+
   /* Hero entrance — one orchestrated sequence, not per-section */
   .reveal{opacity:0; transform:translateY(18px); animation:rise .9s cubic-bezier(.19,1,.22,1) forwards;}
   .reveal.d1{animation-delay:.15s} .reveal.d2{animation-delay:.35s}
@@ -175,7 +182,7 @@
 
 <!-- ============ HERO — full-bleed video, name up front ============ -->
 <section id="top" class="relative w-full h-[92svh] min-h-[520px] overflow-hidden bg-ink">
-  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+  <video id="hero-video" class="absolute inset-0 w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" tabindex="-1" aria-hidden="true">
     <source src="hero-video.mp4" type="video/mp4"/>
   </video>
   <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/50"></div>
@@ -518,6 +525,43 @@
 <script>
   // Put the company's WhatsApp number here (international format, digits only, no + sign)
   const WHATSAPP_NUMBER = '2340000000000';
+
+  // Force the hero video to autoplay on phones (no play button needed)
+  (function(){
+    const v = document.getElementById('hero-video');
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.removeAttribute('controls');
+
+    function tryPlay(){
+      if (!v.paused) return;
+      const p = v.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    tryPlay();
+    v.addEventListener('loadedmetadata', tryPlay);
+    v.addEventListener('loadeddata', tryPlay);
+    v.addEventListener('canplay', tryPlay);
+    window.addEventListener('load', tryPlay);
+    window.addEventListener('pageshow', tryPlay);
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) tryPlay(); });
+
+    // Some phones (e.g. iPhone Low Power Mode) only allow playback after the first touch/scroll,
+    // so retry on the very first interaction and then stop listening.
+    ['touchstart','touchend','click','scroll','keydown'].forEach(function(evt){
+      window.addEventListener(evt, function once(){
+        tryPlay();
+        window.removeEventListener(evt, once);
+      }, {passive:true});
+    });
+
+    // Keep it playing if the browser pauses it
+    v.addEventListener('pause', function(){ if (!document.hidden) setTimeout(tryPlay, 150); });
+  })();
 
   const header = document.querySelector('header');
   const bar = document.getElementById('scrollbar');
